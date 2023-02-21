@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+<header th:fragment="common-header">
+  <img src="../static/images/company-logo.jpg" alt="company logo" th:src="@{/images/company-logo.jpg}" class="rounded mx-auto d-block">
+  <h1>Witaj na stronie przedszkola "Kwiatuszek"</h1>
+  <div>
+    <h2>Opis firmy</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget ullamcorper leo, quis luctus neque. Vivamus dictum auctor metus, vitae fringilla nulla luctus in. Donec ac metus dolor. Nullam pulvinar in massa quis auctor. Phasellus eget ex justo. Nulla ornare odio ligula. Quisque lobortis nulla at porta efficitur. In sodales justo sit amet sem aliquet, nec commodo orci placerat. Integer varius, augue in ullamcorper lacinia, nulla neque malesuada ex, nec ornare nulla arcu non metus. Donec porttitor pulvinar consectetur. Etiam congue facilisis ligula, quis condimentum odio vehicula eu.</p>
+  </div>
+</header>
+<footer th:fragment="common-footer">
+  <a href="#"> privacy policy </a>
+  <a href="#"> statute </a>
+  <a href="#"> contakt </a>
+  <p>Super Przedszkole &copy;2021</p>
+</footer>
+</body>
+</html>
