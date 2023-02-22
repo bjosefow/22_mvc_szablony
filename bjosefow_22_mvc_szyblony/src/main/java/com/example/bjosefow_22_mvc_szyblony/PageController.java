@@ -10,23 +10,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PageController {
 
     private final MailService mailService;
-    private final String companyEmailAdress = "firmowy@byom.de";
+    private final String companyEmailAdress = "przykladowe991122@op.pl";
 
     public PageController(MailService mailService) {
         this.mailService = mailService;
     }
 
     @GetMapping("/")
-    String home(Model model) {
-        model.addAttribute("mailMessage", new SimpleMailMessage());
+    String home() {
+        return "homePage";
+    }
+
+    @GetMapping("/contactForm")
+    String contact(Model model) {
+        model.addAttribute("mailMessage", new ContactMessage());
         return "contactPage";
     }
 
     @PostMapping("/send")
-    String send(SimpleMailMessage mailMessage) {
-        mailMessage.setTo(companyEmailAdress);
-        boolean send = mailService.sendMail(mailMessage);
+    String send(ContactMessage mailMessage) {
+        mailMessage.setSender(companyEmailAdress);
+        mailMessage.setReceiver(companyEmailAdress);
+        boolean send = mailService.sendBasicMail(mailMessage);
         if (send) {
+            mailService.sendConfirmationMail(mailMessage);
             return "redirect:/success";
         } else {
             return "redirect:/failure";
@@ -34,8 +41,7 @@ public class PageController {
     }
 
     @GetMapping("/success")
-    String messageSent(Model model) {
-        model.addAttribute("replyTo", mailService.getReplyToEMailAddress());
+    String messageSent() {
         return "summaryPage";
     }
 
