@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<main layout:fragment="content">
+    <h1>Wyslij wiadomosc</h1>
+
+    <form action="/send" method="post" th:object="${mailMessage}">
+        <div class="mb-3">
+            <label for="senderName" class="form-label">Nazwa nadawcy:</label>
+            <input type="text" class="form-control" id="senderName">
+        </div>
+        <div class="mb-3">
+            <label for="senderEmail" class="form-label">E-Mail nadawcy:</label>
+            <input type="email" class="form-control" id="senderEmail" th:field="*{replyTo}">
+        </div>
+        <div class="mb-3">
+            <label for="titleEmail" class="form-label">Tytul:</label>
+            <input type="text" class="form-control" id="titleEmail" th:field="*{title}">
+        </div>
+        <div class="mb-3">
+            <label for="mailContent" class="form-label">Tresc Wiadomosci:</label>
+            <textarea type="email" class="form-control" id="mailContent" th:field="*{content}"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Wyslij</button>
+    </form>
+</main>
+</html>
